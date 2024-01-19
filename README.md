@@ -1,18 +1,14 @@
-# Salesforce DX Project: Next Steps
 
-Now that you’ve created a Salesforce DX project, what’s next? Here are some documentation resources to get you started.
+ShipmentTrackingStatus:Component and Class Implementation
 
-## How Do You Plan to Deploy Your Changes?
+Apex Class: ShipmentTrackingCallout
+LWC: ShipmentTracking
 
-Do you want to deploy a set of changes, or create a self-contained application? Choose a [development model](https://developer.salesforce.com/tools/vscode/en/user-guide/development-models).
+LWC:
+I have implemented an LWC that includes an input field and a button labeled "Track." When the button is clicked, the LWC calls the designated service. If the input field is left empty, the expected response should be "Error - Must provide tracking number." However, I have observed that even with a null value, the service consistently returns the 'Shipped- On Time' status. I have verified the debugs and encourage you to test it by accessing the following URL in your browser: 
+[https://merzcommunities--mel.sandbox.my.salesforce-sites.com/services/apexrest/mockShipmentStatus?trackingNumber=]
 
-## Configure Your Salesforce DX Project
+Apex Class:
+In the Apex class, I have defined a method called getShipmentTrackingStatus that takes a parameter named 'trackingNumber.' In this method, I validate the parameter value, converting it to null if empty, aligning with the single condition defined in your web service. I have also implemented best practices, such as employing a try/catch block to handle any exceptions. The method calls the web service and returns the response to the LWC. If the service call is successful and there is a response, it is displayed on a toast message within the component.
 
-The `sfdx-project.json` file contains useful configuration information for your project. See [Salesforce DX Project Configuration](https://developer.salesforce.com/docs/atlas.en-us.sfdx_dev.meta/sfdx_dev/sfdx_dev_ws_config.htm) in the _Salesforce DX Developer Guide_ for details about this file.
-
-## Read All About It
-
-- [Salesforce Extensions Documentation](https://developer.salesforce.com/tools/vscode/)
-- [Salesforce CLI Setup Guide](https://developer.salesforce.com/docs/atlas.en-us.sfdx_setup.meta/sfdx_setup/sfdx_setup_intro.htm)
-- [Salesforce DX Developer Guide](https://developer.salesforce.com/docs/atlas.en-us.sfdx_dev.meta/sfdx_dev/sfdx_dev_intro.htm)
-- [Salesforce CLI Command Reference](https://developer.salesforce.com/docs/atlas.en-us.sfdx_cli_reference.meta/sfdx_cli_reference/cli_reference.htm)
+These updates have been pushed to the GitHub repository for your review.
