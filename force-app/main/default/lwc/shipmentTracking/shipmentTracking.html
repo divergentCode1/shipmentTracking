@@ -1,0 +1,22 @@
+<template>
+
+    <lightning-card title="Shipment Tracking">
+       
+        <div class="slds-p-around_medium">  
+            <div class="slds-grid slds-gutters">
+                <div class="slds-col">
+                    <lightning-input label="Tracking Number" value={trackingNumber} onchange={handleTrackingNumberChange}></lightning-input>
+                </div>
+                <div class="slds-col">
+                    <br/>
+                    <lightning-button class="slds-margin" label="Track" onclick={handleTrackButtonClick} variant="brand"></lightning-button>
+                </div>
+            </div>
+            <template lwc:if={isLoading}>
+                <div class="slds-is-relative slds-m-top_large">
+                    <lightning-spinner alternative-text="Loading" size="large"></lightning-spinner>
+                </div>
+            </template>     
+        </div>
+    </lightning-card>
+</template>
